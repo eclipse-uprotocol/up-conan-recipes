@@ -28,7 +28,7 @@ protobuf_generate(LANGUAGE cpp TARGET up-core-api-protos PROTOS ${PROTO_FILES} I
 # Build the actual library
 add_library(up-core-api)
 target_include_directories(up-core-api
-	PUBLIC
+	PRIVATE
 	${CMAKE_BINARY_DIR}
 	${MY_PROTOC_OUT_DIR}
 	${protobuf_INCLUDE_DIRS}
@@ -36,6 +36,9 @@ target_include_directories(up-core-api
 target_link_libraries(up-core-api ${protobuf_LIBRARIES})
 target_sources(up-core-api
 	PRIVATE
-	${PROTO_HDRS}
 	${PROTO_SRCS}
+	PUBLIC FILE_SET public_headers TYPE HEADERS BASE_DIRS build/Release build/Debug FILES
+	${PROTO_HDRS}
 )
+
+install(TARGETS up-core-api LIBRARY ARCHIVE FILE_SET public_headers)
