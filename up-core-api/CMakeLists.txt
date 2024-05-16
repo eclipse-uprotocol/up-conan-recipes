@@ -12,8 +12,8 @@ endif()
 # Use protoc to generate the C++ headers / sources from .proto files
 set(CMAKE_CURRENT_SOURCE_DIR ${MY_IMPORT_DIRS})
 
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/uprotocol")
-set(MY_PROTOC_OUT_DIR ${CMAKE_BINARY_DIR}/uprotocol)
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/protoc/uprotocol")
+set(MY_PROTOC_OUT_DIR ${CMAKE_BINARY_DIR}/protoc/uprotocol)
 
 #Load up all the proto files that need to be compiled via protoc (into header/source files)
 file(GLOB_RECURSE PROTO_FILES ${MY_IMPORT_DIRS}/*.proto)
@@ -37,7 +37,7 @@ target_link_libraries(up-core-api ${protobuf_LIBRARIES})
 target_sources(up-core-api
 	PRIVATE
 	${PROTO_SRCS}
-	PUBLIC FILE_SET public_headers TYPE HEADERS BASE_DIRS build/Release build/Debug FILES
+	PUBLIC FILE_SET public_headers TYPE HEADERS BASE_DIRS build/protoc build/Release/protoc build/Debug/protoc FILES
 	${PROTO_HDRS}
 )
 
