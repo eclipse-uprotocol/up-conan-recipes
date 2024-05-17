@@ -12,8 +12,8 @@ endif()
 # Use protoc to generate the C++ headers / sources from .proto files
 set(CMAKE_CURRENT_SOURCE_DIR ${MY_IMPORT_DIRS})
 
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/protoc/uprotocol")
-set(MY_PROTOC_OUT_DIR ${CMAKE_BINARY_DIR}/protoc/uprotocol)
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/protoc/uprotocol/v1")
+set(MY_PROTOC_OUT_DIR ${CMAKE_BINARY_DIR}/protoc/uprotocol/v1)
 
 #Load up all the proto files that need to be compiled via protoc (into header/source files)
 file(GLOB_RECURSE PROTO_FILES ${MY_IMPORT_DIRS}/*.proto)
