@@ -17,10 +17,10 @@ out and built.
 With Conan 2:
 
 ```
-conan create --version 1.5.8 up-core-api/release/
-conan create --version 0.2.0 up-cpp/release/
-conan create --version 0.2.0 up-transport-zenoh-cpp/release/
-conan create --version 0.1.0 up-transport-vsomeip-cpp/release/
+conan create --version 1.5.8 --build=missing up-core-api/release/
+conan create --version 0.2.0 --build=missing up-cpp/release/
+conan create --version 0.2.0 --build=missing up-transport-zenoh-cpp/release/
+conan create --version 0.1.0 --build=missing up-transport-vsomeip-cpp/release/
 ```
 
 ## Building Developer Packages
@@ -31,11 +31,27 @@ The default fork and checkout commit can be overridden with
 With Conan 2:
 
 ```
-conan create --version 1.5.8 up-core-api/developer/
-conan create --version 0.2.0 up-cpp/developer/
-conan create --version 0.2.0 up-transport-zenoh-cpp/developer/
-conan create --version 0.1.0 up-transport-vsomeip-cpp/developer/
+conan create --version 1.5.8 --build=missing up-core-api/developer/
+conan create --version 0.2.0 --build=missing up-cpp/developer/
+conan create --version 0.2.0 --build=missing up-transport-zenoh-cpp/developer/
+conan create --version 0.1.0 --build=missing up-transport-vsomeip-cpp/developer/
 ```
 
 Note that developer recipes will generally only support recent commits in a
 library's repo. Older releases are available through the release recipes.
+
+When changing fork or commit-ish for developer builds, it will be necessary to
+first remove the any existing copies of the target package. For example, up-cpp
+would be removed with `conan remove 'up-cpp'`.
+
+## Running in a clean docker container
+
+```
+sudo docker run -it -v .:/recipes:ro ubuntu:24.04 /bin/bash
+apt update && apt install wget git g++ cmake
+wget https://github.com/conan-io/conan/releases/download/2.3.0/conan-2.3.0-amd64.deb
+dpkg -i conan-2.3.0-amd64.deb
+conan profile detect
+
+# Build packages here
+```
