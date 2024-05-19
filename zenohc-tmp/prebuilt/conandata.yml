@@ -1,0 +1,29 @@
+sources:
+  "0.11.0.3":
+    "Windows":
+      "x86_64":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-x86_64-pc-windows-msvc-standalone.zip"
+        sha256: "0932049808716fd6810a8910c2b69032c54c59e58e531f5716584cf66de72038"
+    "Linux":
+      "x86_64":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-x86_64-unknown-linux-gnu-standalone.zip"
+        sha256: "e1808fcd6ff155a9bcd6d819de2233305fd3c1b0e07bb9af0b81aa56b3c8c1f3"
+      "armv6":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-arm-unknown-linux-gnueabi-standalone.zip"
+        sha256: "bfccf950aecc192f917029fc5960789860e8ee891057dfad2b188ee4e5696025"
+      "armv7hf":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-armv7-unknown-linux-gnueabihf-standalone.zip"
+        sha256: "fa47621055f23dfa3a198f0e8fe953c0efaf576b30ccc08ee3f9eb44ed81181d"
+      "armv8":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-aarch64-unknown-linux-gnu-standalone.zip"
+        sha256: "a98b6c893a85cac8466f16cdbbbfd7821d706571981a3b9f1581a9f435f1cecc"
+    "Macos":
+      "x86_64":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-x86_64-apple-darwin-standalone.zip"
+        sha256: "de8c3ca0ca1d3d253ff54d5b6df4723d3f19db081847a2376995bc754eb79b5e"
+      "armv8":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/releases/download/0.11.0.3/zenoh-c-0.11.0.3-aarch64-apple-darwin-standalone.zip"
+        sha256: "fb4311cfa3668aa5e7fd9bb3af0f1b3c9caf8fc9452f087398f867ae12336875"
+    "license":
+        url: "https://github.com/eclipse-zenoh/zenoh-c/raw/0.11.0.3/LICENSE"
+        sha256: "01a44774f7b1a453595c7c6d7f7308284ba6a1059dc49e14dad6647e1d44a338"
