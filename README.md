@@ -1,4 +1,4 @@
-# uProtocol C++ Conan Recipes
+# uProtocol C++ Conan Recipes (up-conan-recipes)
 
 This is a collection of Conan recipes for uProtocol C++ libraries. For each
 uP package, two recipes are provided: release and developer.
