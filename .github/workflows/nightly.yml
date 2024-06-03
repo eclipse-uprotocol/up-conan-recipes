@@ -1,0 +1,11 @@
+name: Nightly Build
+
+on:
+  schedule:
+    # Runs at 07:17 UTC (00:17 PDT) Monday through Friday.
+    # We don't run on weekends. Everyone needs a little time off.
+    - cron: "17 7 * * 1-5"
+
+jobs:
+  run-build:
+    uses: ./.github/workflows/ci.yml
