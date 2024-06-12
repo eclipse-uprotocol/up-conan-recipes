@@ -5,6 +5,11 @@ CONTAINER_SCRIPTS="/data/recipes/tools/ubuntu-24.04-docker/.container_scripts"
 # Exit on errors
 set -e
 
+echo "Point to apt cache"
+echo 'Acquire::HTTP::Proxy "http://172.17.0.1:3142";' >> /etc/apt/apt.conf.d/01proxy
+echo 'Acquire::HTTPS::Proxy "false";' >> /etc/apt/apt.conf.d/01proxy
+
+echo
 echo "Installing packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get -y update

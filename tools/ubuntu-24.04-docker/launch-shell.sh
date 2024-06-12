@@ -60,6 +60,16 @@ echo "The root of this repo ($PROJECT_ROOT)"
 echo "will be mapped into the container as a read-only volume"
 echo
 
+if ! [ "$( $DOCKER_CMD container inspect -f '{{.State.Running}}' apt-cacher-ng )" = "true" ]; then
+	docker run --name apt-cacher-ng --init -d --restart=always \
+		--publish 3142:3142 \
+		-e HTTP_PROXY="$HTTP_PROXY" -e HTTPS_PROXY="$HTTPS_PROXY" \
+		-e http_proxy="$http_proxy" -e https_proxy="$https_proxy" \
+		-e no_proxy="$no_proxy" \
+		--mount source=apt-cache-vol,target=/var/cache/apt-cacher-ng \
+		sameersbn/apt-cacher-ng:3.7.4-20220421
+fi
+
 echo "Launching container as $USER ($(id -u):$(id -g))"
 $DOCKER_CMD run --rm -it -v "$PROJECT_ROOT":/data/recipes:ro \
 	-e HTTP_PROXY="$HTTP_PROXY" -e HTTPS_PROXY="$HTTPS_PROXY" \
