@@ -20,6 +20,7 @@ set(PROTO_FILES
 	up-core-api/uprotocol/v1/umessage.proto
 	up-core-api/uprotocol/v1/uri.proto
 	up-core-api/uprotocol/v1/ustatus.proto
+	up-core-api/uprotocol/v1/ucode.proto
 	up-core-api/uprotocol/v1/uuid.proto
 	up-core-api/uprotocol/core/udiscovery/v3/udiscovery.proto
 	up-core-api/uprotocol/core/usubscription/v3/usubscription.proto
