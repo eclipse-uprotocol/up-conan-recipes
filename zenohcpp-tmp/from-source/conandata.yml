@@ -1,0 +1,7 @@
+sources:
+  "0.11.0":
+    url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/0.11.0.tar.gz"
+    sha256: "62e9a51ced89130d7a49a1e8f801308338d972e62b90c5224f5801171bd90af0"
+  "0.11.0.3":
+    url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/0.11.0.3.tar.gz"
+    sha256: "3c0a424809f464b9704480bca58c895a5438f4bb1586d4e3ff4838879c73b69d"
