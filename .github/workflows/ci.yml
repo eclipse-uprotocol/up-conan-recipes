@@ -39,11 +39,18 @@ jobs:
         shell: bash
         run: |
           conan create --version 0.11.0.3 zenohc-tmp/prebuilt
+          conan create --version 0.11.0 zenohc-tmp/prebuilt
+
+      - name: Build zenohcpp conan package
+        shell: bash
+        run: |
+          conan create --version 0.11.0.3 zenohcpp-tmp/from-source
+          conan create --version 0.11.0 zenohcpp-tmp/from-source
 
       - name: Build up-transport-zenoh-cpp conan package
         shell: bash
         run: |
-          conan create --version 0.1.4 --build=missing up-transport-zenoh-cpp/developer
+          conan create --version 0.2.0 --build=missing up-transport-zenoh-cpp/developer
 
   # NOTE: In GitHub repository settings, the "Require status checks to pass
   # before merging" branch protection rule ensures that commits are only merged
