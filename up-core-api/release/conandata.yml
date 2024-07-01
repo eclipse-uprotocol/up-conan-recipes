@@ -1,0 +1,11 @@
+up-core-api:
+  1.0.0:
+    fork: "eclipse-uprotocol/up-spec"
+    commitish: "main"
+    requirements:
+      protobuf: "3.21.12"
+  # 1.0.1:
+  #     fork: "eclipse-uprotocol/up-spec"
+  #     commitish: "release/1.0.1"
+  #     requirements:
+  #       protobuf: "3.22.0"
