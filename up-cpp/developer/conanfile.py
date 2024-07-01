@@ -31,19 +31,15 @@ class upCoreApiRecipe(ConanFile):
     requires = "up-core-api/1.5.8", "spdlog/1.13.0", "protobuf/[>=3.21.12]"
     test_requires = "gtest/1.14.0"
 
+    def init(self):
+        self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-cpp")
+        self.commitish = self.options.get_safe("commitish", "main")
+
     def source(self):
-        # Workaround for compatibility with conan1 and conan2
-        # https://github.com/conan-io/conan/issues/13506
-        try:
-            fork = self.options.fork
-            commitish = self.options.commitish
-        except:
-            fork = self.info.options.fork
-            commitish = self.info.options.commitish
 
         git = Git(self)
-        git.clone("https://github.com/{}.git".format(fork), target=".")
-        git.checkout(commitish)
+        git.clone(f"https://github.com/{self.fork}.git", target=".")
+        git.checkout(self.commitish)
 
     def config_options(self):
         if self.settings.os == "Windows":
