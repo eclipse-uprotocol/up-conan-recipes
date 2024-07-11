@@ -12,7 +12,7 @@ class upCoreApiRecipe(ConanFile):
     license = "Apache-2.0"
     author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
     url = "https://github.com/eclipse-uprotocol/up-transport-zenoh-cpp"
-    description = "This library provides a Zenoh-based uProtocol transport for C++ uEntities"
+    description = "This library provides a C++ uProtocol API for the development of uEntities"
     topics = ("automotive", "iot", "uprotocol", "messaging")
 
     # Binary configuration
@@ -27,8 +27,6 @@ class upCoreApiRecipe(ConanFile):
         "fPIC": True,
     }
 
-    test_requires = "gtest/1.14.0"
-
     def requirements(self):
         version_data = self.conan_data[self.version]
         if "requirements" in version_data:
@@ -36,13 +34,12 @@ class upCoreApiRecipe(ConanFile):
                 self.requires(f"{requirement}/{version}")
         else:
             self.output.warning("No requirements specified in conandata.yml. Please check your configuration.")
-                
 
-    # We are providing our own cmake config since one is not included in the
-    # spec repo.
-    def export_sources(self):
-        copy(self, "CMakeLists.txt",
-             self.recipe_folder + "/..", self.export_sources_folder)
+        if "test-requirements" in version_data:
+            for requirement, version in version_data["test-requirements"].items():
+                self.test_requires(f"{requirement}/{version}")
+        
+                
 
     def source(self):
         get(self, **self.conan_data[self.version]["sources"], strip_root=True)

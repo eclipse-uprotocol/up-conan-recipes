@@ -27,8 +27,6 @@ class upZenohTransportRecipe(ConanFile):
         "fPIC": True,
     }
 
-    test_requires = "gtest/1.14.0"
-
     def requirements(self):
         version_data = self.conan_data[self.version]
         if "requirements" in version_data:
@@ -36,13 +34,11 @@ class upZenohTransportRecipe(ConanFile):
                 self.requires(f"{requirement}/{version}")
         else:
             self.output.warning("No requirements specified in conandata.yml. Please check your configuration.")
-                
+            
+        if "test-requirements" in version_data:
+            for requirement, version in version_data["test-requirements"].items():
+                self.test_requires(f"{requirement}/{version}")
 
-    # We are providing our own cmake config since one is not included in the
-    # spec repo.
-    def export_sources(self):
-        copy(self, "CMakeLists.txt",
-             self.recipe_folder + "/..", self.export_sources_folder)
 
     def source(self):
         get(self, **self.conan_data[self.version]["sources"], strip_root=True)

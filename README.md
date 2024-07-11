@@ -20,7 +20,6 @@ With Conan 2:
 conan create --version 1.6.0 --build=missing up-core-api/release/
 conan create --version 1.0.0-rc0 --build=missing up-cpp/release/
 conan create --version 1.0.0-rc0 --build=missing up-transport-zenoh-cpp/release/
-conan create --version 0.1.0 --build=missing up-transport-vsomeip-cpp/release/
 ```
 
 ## Building Developer Packages

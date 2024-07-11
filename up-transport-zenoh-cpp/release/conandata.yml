@@ -5,6 +5,9 @@
   requirements:
     zenohcpp: "0.11.0" 
     up-cpp: "1.0.0-rc0" 
-    up-core-api: "[>=1.5.8]" 
-    spdlog: "[>=1.13.0]" 
-    protobuf: "[>=3.21.12]"
+    up-core-api: "1.6.0" 
+    spdlog: "1.13.0" 
+    protobuf: "3.21.12"
+  test-requirements:
+    gtest: "1.14.0"
+
