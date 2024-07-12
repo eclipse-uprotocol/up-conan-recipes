@@ -11,7 +11,7 @@ class upCoreApiRecipe(ConanFile):
     # Optional metadata
     license = "Apache-2.0"
     author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
-    url = "https://github.com/eclipse-uprotocol/up-transport-zenoh-cpp"
+    url = "https://github.com/eclipse-uprotocol/up-cpp"
     description = "This library provides a C++ uProtocol API for the development of uEntities"
     topics = ("automotive", "iot", "uprotocol", "messaging")
 
