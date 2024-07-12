@@ -54,6 +54,11 @@ jobs:
           conan create --version 1.0.0-rc0 --build=missing up-transport-zenoh-cpp/release
           conan create --version 1.0.0-rc1 --build=missing up-transport-zenoh-cpp/release
 
+      - name: List conan packages
+        shell: bash
+        run: |
+          conan list '*'
+
   build-dev-conan-2:
     name: Build Developer (Conan 2)
     runs-on: ubuntu-latest
@@ -93,6 +98,11 @@ jobs:
         shell: bash
         run: |
           conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer
+
+      - name: List conan packages
+        shell: bash
+        run: |
+          conan list '*'
 
   # NOTE: In GitHub repository settings, the "Require status checks to pass
   # before merging" branch protection rule ensures that commits are only merged
