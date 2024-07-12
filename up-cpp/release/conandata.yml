@@ -1,0 +1,12 @@
+1.0.0-rc0:
+  sources:
+    url: "https://github.com/eclipse-uprotocol/up-cpp/archive/337b4f4b4193fece4d7067ef754b41ea323e1f96.tar.gz"
+    sha256: "f65fd40e3ba8914e70d3a4a9e5426b646ad6299c94841ff42a918fe75513e128"
+  requirements:
+    protobuf: "3.21.12"
+    up-core-api: "1.6.0"
+    spdlog: "1.13.0"
+  test-requirements:
+    gtest: "1.14.0"
+
+
