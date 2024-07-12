@@ -9,11 +9,11 @@ class upCoreApiRecipe(ConanFile):
     name = "up-core-api"
 
     # Optional metadata
-    license = "<Put the package license here>"
-    author = "<Put your name here> <And your email here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of hello package here>"
-    topics = ("<Put some tag here>", "<here>", "<and here>")
+    license = "Apache-2.0"
+    author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
+    url = "https://github.com/eclipse-uprotocol/up-spec"
+    description = "Provides the uProtocol data model and core services definitions compiled for C++ from source proto files"
+    topics = ("automotive", "iot", "uprotocol", "messaging")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
@@ -29,7 +29,7 @@ class upCoreApiRecipe(ConanFile):
             "fork": "eclipse-uprotocol/up-spec",
             "commitish": "main"}
 
-    requires = "protobuf/3.21.12"
+    requires = "protobuf/[~3.21]"
 
     def init(self):
         self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-spec")

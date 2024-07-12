@@ -8,11 +8,11 @@ class upCoreApiRecipe(ConanFile):
     name = "up-cpp"
 
     # Optional metadata
-    license = "<Put the package license here>"
-    author = "<Put your name here> <And your email here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of hello package here>"
-    topics = ("<Put some tag here>", "<here>", "<and here>")
+    license = "Apache-2.0"
+    author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
+    url = "https://github.com/eclipse-uprotocol/up-cpp"
+    description = "This library provides a C++ uProtocol API for the development of uEntities"
+    topics = ("automotive", "iot", "uprotocol", "messaging")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
@@ -28,8 +28,8 @@ class upCoreApiRecipe(ConanFile):
             "fork": "eclipse-uprotocol/up-cpp",
             "commitish": "main"}
 
-    requires = "up-core-api/1.5.8", "spdlog/1.13.0", "protobuf/[>=3.21.12]"
-    test_requires = "gtest/1.14.0"
+    requires = "up-core-api/[~1.6, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]"
+    test_requires = "gtest/[~1.14]"
 
     def init(self):
         self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-cpp")
