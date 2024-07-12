@@ -11,3 +11,16 @@
   test-requirements:
     gtest: "1.14.0"
 
+1.0.0-rc1:
+  sources:
+    url: "https://github.com/eclipse-uprotocol/up-transport-zenoh-cpp/archive/fb8581df5e6acdb2e65c3a557eca49b55b8266e6.tar.gz"
+    sha256: "c6c7c962e5d9714cdf9358bea84a80ca894a2176ce67965867d377206c57fa82"
+  requirements:
+    zenohcpp: "1.0.0-rc4" 
+    up-cpp: "1.0.0" 
+    up-core-api: "1.6.0" 
+    spdlog: "1.13.0" 
+    protobuf: "3.21.12"
+  test-requirements:
+    gtest: "1.14.0"
+
