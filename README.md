@@ -18,8 +18,8 @@ With Conan 2:
 
 ```
 conan create --version 1.6.0 --build=missing up-core-api/release/
-conan create --version 1.0.0-rc0 --build=missing up-cpp/release/
-conan create --version 1.0.0-rc0 --build=missing up-transport-zenoh-cpp/release/
+conan create --version 1.0.0 --build=missing up-cpp/release/
+conan create --version 1.0.0-rc1 --build=missing up-transport-zenoh-cpp/release/
 ```
 
 ## Building Developer Packages
@@ -30,10 +30,9 @@ The default fork and checkout commit can be overridden with
 With Conan 2:
 
 ```
-conan create --version 1.5.8 --build=missing up-core-api/developer/
-conan create --version 0.2.0 --build=missing up-cpp/developer/
-conan create --version 0.2.0 --build=missing up-transport-zenoh-cpp/developer/
-conan create --version 0.1.0 --build=missing up-transport-vsomeip-cpp/developer/
+conan create --version 1.6.1-dev --build=missing up-core-api/developer/
+conan create --version 1.1.0-dev --build=missing up-cpp/developer/
+conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer/
 ```
 
 Note that developer recipes will generally only support recent commits in a
@@ -43,14 +42,21 @@ When changing fork or commit-ish for developer builds, it will be necessary to
 first remove the any existing copies of the target package. For example, up-cpp
 would be removed with `conan remove 'up-cpp'`.
 
+## Building (Temporary) Zenoh Packages
+
+At time of writing, conan packages were not available for zenoh-c and zenoh-cpp.
+They are prerequisites for the up-transport-zenoh-cpp packages. With Conan 2:
+
+```
+conan create --version 1.0.0-rc4 zenohc-tmp/prebuilt
+conan create --version 1.0.0-rc4 zenohcpp-tmp/from-source
+```
+
 ## Running in a clean docker container
 
 ```
-sudo docker run -it -v .:/recipes:ro ubuntu:24.04 /bin/bash
-apt update && apt install wget git g++ cmake
-wget https://github.com/conan-io/conan/releases/download/2.3.0/conan-2.3.0-amd64.deb
-dpkg -i conan-2.3.0-amd64.deb
-conan profile detect
+cd tools/ubuntu-24.04-docker/
+./launch-shell.sh
 
 # Build packages here
 ```
