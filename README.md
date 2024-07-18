@@ -33,6 +33,8 @@ With Conan 2:
 conan create --version 1.6.1-dev --build=missing up-core-api/developer/
 conan create --version 1.1.0-dev --build=missing up-cpp/developer/
 conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer/
+conan create --version 1.0.0-dev --build=missing up-socket-cpp/developer/
+
 ```
 
 Note that developer recipes will generally only support recent commits in a
