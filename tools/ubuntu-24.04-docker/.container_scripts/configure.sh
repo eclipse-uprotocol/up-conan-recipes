@@ -8,7 +8,7 @@ set -e
 echo "Installing packages"
 export DEBIAN_FRONTEND=noninteractive
 apt-get -y update
-apt-get -y install wget tmux cmake g++ git $ENABLE_SUDO gdb
+apt-get -y install wget tmux cmake g++ git $ENABLE_SUDO gdb valgrind clang-format clang-tidy
 unset DEBIAN_FRONTEND
 
 echo
