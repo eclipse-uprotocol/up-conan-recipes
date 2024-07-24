@@ -5,7 +5,7 @@ CONTAINER_SCRIPTS="/data/recipes/tools/ubuntu-24.04-docker/.container_scripts"
 
 echo "Preparing to launch and configure Ubuntu 24.04 docker container"
 
-if [ -n "$(groups) | grep docker" ]; then
+if [ -z "$(groups | grep docker)" ]; then
 	echo "User not in docker group, sudo will be required"
 	echo
 	DOCKER_CMD="sudo docker"
