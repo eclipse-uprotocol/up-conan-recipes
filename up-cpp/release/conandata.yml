@@ -18,3 +18,15 @@
     up-core-api: "1.6.0"
   test-requirements:
     gtest: "1.14.0"
+
+# NOTE: This is up-cpp PR #240. This will be replaced with the merged commit
+# once the PR is complete.
+1.0.1-rc0:
+  sources:
+    url: "https://github.com/gregmedd/up-cpp/archive/d5cc19ef54bd47f9e9693a23d96e33d23e952bff.tar.gz"
+    sha256: "fbd5c100f6a9c954cfb512f57a2710cc317972b15875380b3cda8a1c2b25a192"
+  requirements:
+    protobuf: "3.21.12"
+    up-core-api: "1.6.0"
+  test-requirements:
+    gtest: "1.14.0"
