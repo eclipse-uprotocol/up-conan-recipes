@@ -19,12 +19,10 @@
   test-requirements:
     gtest: "1.14.0"
 
-# NOTE: This is up-cpp PR #240. This will be replaced with the merged commit
-# once the PR is complete.
-1.0.1-rc0:
+1.0.1-rc1:
   sources:
-    url: "https://github.com/gregmedd/up-cpp/archive/d5cc19ef54bd47f9e9693a23d96e33d23e952bff.tar.gz"
-    sha256: "fbd5c100f6a9c954cfb512f57a2710cc317972b15875380b3cda8a1c2b25a192"
+    url: "https://github.com/eclipse-uprotocol/up-cpp/archive/9d53a0a0d318cf2a1ce3ab7ecc37198fa50f3941.tar.gz"
+    sha256: "f6753e5b25ddaa2eb224f6988f76f1b62bc7219a9b72bcdf51b07c498ef9178d"
   requirements:
     protobuf: "3.21.12"
     up-core-api: "1.6.0"
