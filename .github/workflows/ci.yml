@@ -102,6 +102,11 @@ jobs:
 #        run: |
 #          conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer
 
+      - name: Build up-transport-socket-cpp conan package
+        shell: bash
+        run: |
+          conan create --version 1.0.0-dev --build=missing up-transport-socket-cpp/developer/
+
       - name: List conan packages
         shell: bash
         run: |

@@ -5,12 +5,12 @@ from conan.tools.files import copy
 
 
 class UpClientSocket(ConanFile):
-    name = "up_client_socket"
+    name = "up-transport-socket-cpp"
 
     # Optional metadata
     license = "Apache-2.0 license"
-    author = "<Put your name here> <And your email here>"
-    url = "https://github.com/conan-io/conan-center-index"
+    author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
+    url = "https://github.com/eclipse-uprotocol/up-tck"
     description = "C++ up client socket library for testagent"
     topics = ("automotive", "iot", "uprotocol", "messaging")
 
@@ -28,7 +28,7 @@ class UpClientSocket(ConanFile):
             "fork": "eclipse-uprotocol/up-tck",
             "commitish": "main"}
 
-    requires = "up-core-api/[~1.6, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]", "up-cpp/[^1.0, include_prerelease]", "fmt/10.2.1", "openssl/1.1.1w"
+    requires = "up-core-api/[~1.6, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]", "up-cpp/[^1.0, include_prerelease]", "fmt/10.2.1"
 
     def init(self):
         self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-tck")
@@ -63,4 +63,4 @@ class UpClientSocket(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["up_client_socket"]
+        self.cpp_info.libs = ["up-transport-socket-cpp"]
