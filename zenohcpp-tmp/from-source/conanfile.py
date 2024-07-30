@@ -53,7 +53,9 @@ class ZenohCppPackageConan(ConanFile):
     def package(self):
         copy(self, "LICENSE", self.build_folder, os.path.join(self.package_folder, "licenses"))
         cmake = CMake(self)
-        cmake.configure(build_script_folder="install")
+        cmake.configure(
+            build_script_folder=self.conan_data["build"][self.version]["build_script_folder"]
+        )
         cmake.install()
 
     def package_info(self):
