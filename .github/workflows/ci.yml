@@ -40,6 +40,7 @@ jobs:
         run: |
           conan create --version 0.11.0.3 zenohc-tmp/prebuilt
           conan create --version 0.11.0 zenohc-tmp/prebuilt
+          conan create --version 1.0.0-rc4 zenohc-tmp/prebuilt
           conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
 
       - name: Build zenohcpp conan package
@@ -47,6 +48,7 @@ jobs:
         run: |
           conan create --version 0.11.0.3 zenohcpp-tmp/from-source
           conan create --version 0.11.0 zenohcpp-tmp/from-source
+          conan create --version 1.0.0-rc4 zenohcpp-tmp/from-source
           conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
 
       - name: Build up-transport-zenoh-cpp conan package
