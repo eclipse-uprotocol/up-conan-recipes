@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.23)
 project(up-core-api VERSION 1.5.8 LANGUAGES CXX DESCRIPTION "uProtocol Core API")
 
 find_package(protobuf CONFIG REQUIRED)
