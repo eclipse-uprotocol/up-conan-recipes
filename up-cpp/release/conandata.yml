@@ -4,7 +4,7 @@
     sha256: "f65fd40e3ba8914e70d3a4a9e5426b646ad6299c94841ff42a918fe75513e128"
   requirements:
     protobuf: "3.21.12"
-    up-core-api: "1.6.0"
+    up-core-api: "1.6.0-alpha2"
     spdlog: "1.13.0"
   test-requirements:
     gtest: "1.14.0"
@@ -15,7 +15,7 @@
     sha256: "295c2730155bd86e91b974321ed863bcfc3d7479686694543f69382ba22baa06"
   requirements:
     protobuf: "3.21.12"
-    up-core-api: "1.6.0"
+    up-core-api: "1.6.0-alpha2"
   test-requirements:
     gtest: "1.14.0"
 
@@ -25,6 +25,6 @@
     sha256: "f6753e5b25ddaa2eb224f6988f76f1b62bc7219a9b72bcdf51b07c498ef9178d"
   requirements:
     protobuf: "3.21.12"
-    up-core-api: "1.6.0"
+    up-core-api: "1.6.0-alpha2"
   test-requirements:
     gtest: "1.14.0"
