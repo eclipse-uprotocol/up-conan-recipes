@@ -49,8 +49,8 @@ At time of writing, conan packages were not available for zenoh-c and zenoh-cpp.
 They are prerequisites for the up-transport-zenoh-cpp packages. With Conan 2:
 
 ```
-conan create --version 1.0.0-rc4 zenohc-tmp/prebuilt
-conan create --version 1.0.0-rc4 zenohcpp-tmp/from-source
+conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
+conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
 ```
 
 ## Running in a clean docker container
