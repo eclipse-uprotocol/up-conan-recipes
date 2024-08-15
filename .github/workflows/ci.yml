@@ -43,6 +43,7 @@ jobs:
           conan create --version 0.11.0 zenohc-tmp/prebuilt
           conan create --version 1.0.0-rc4 zenohc-tmp/prebuilt
           conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
+          conan create --version 1.0.0-rc6 zenohc-tmp/prebuilt
 
       - name: Build zenohcpp conan package
         shell: bash
@@ -51,6 +52,7 @@ jobs:
           conan create --version 0.11.0 zenohcpp-tmp/from-source
           conan create --version 1.0.0-rc4 zenohcpp-tmp/from-source
           conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
+          conan create --version 1.0.0-rc6 zenohcpp-tmp/from-source
 
       - name: Build up-transport-zenoh-cpp conan package
         shell: bash
@@ -91,17 +93,17 @@ jobs:
       - name: Build zenohc conan package
         shell: bash
         run: |
-          conan create --version 1.0.0-rc4 zenohc-tmp/prebuilt
+          conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
 
       - name: Build zenohcpp conan package
         shell: bash
         run: |
-          conan create --version 1.0.0-rc4 zenohcpp-tmp/from-source
+          conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
 
-#      - name: Build up-transport-zenoh-cpp conan package
-#        shell: bash
-#        run: |
-#          conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer
+      - name: Build up-transport-zenoh-cpp conan package
+        shell: bash
+        run: |
+          conan create --version 1.0.0-dev --build=missing up-transport-zenoh-cpp/developer
 
       - name: Build up-transport-socket-cpp conan package
         shell: bash
