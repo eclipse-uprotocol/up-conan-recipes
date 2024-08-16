@@ -19,7 +19,7 @@ With Conan 2:
 ```
 conan create --version 1.6.0-alpha2 --build=missing up-core-api/release/
 conan create --version 1.0.1 --build=missing up-cpp/release/
-conan create --version 1.0.0-rc1 --build=missing up-transport-zenoh-cpp/release/
+conan create --version 1.0.0-rc3 --build=missing up-transport-zenoh-cpp/release/
 ```
 
 ## Building Developer Packages
