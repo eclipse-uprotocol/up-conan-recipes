@@ -60,6 +60,8 @@ jobs:
         run: |
           conan create --version 1.0.0-rc0 --build=missing up-transport-zenoh-cpp/release
           conan create --version 1.0.0-rc1 --build=missing up-transport-zenoh-cpp/release
+          conan create --version 1.0.0-rc2 --build=missing up-transport-zenoh-cpp/release
+          conan create --version 1.0.0-rc3 --build=missing up-transport-zenoh-cpp/release
 
       - name: List conan packages
         shell: bash
