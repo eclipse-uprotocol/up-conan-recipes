@@ -28,3 +28,13 @@
     up-core-api: "1.6.0-alpha2"
   test-requirements:
     gtest: "1.14.0"
+
+1.0.1:
+  sources:
+    url: "https://github.com/eclipse-uprotocol/up-cpp/archive/refs/tags/v1.0.1.tar.gz"
+    sha256: "7ca6173abeea6c643ce9d8df5fd43efb445bf2ef3bd3ec6c0f3e807995368f1b"
+  requirements:
+    protobuf: "3.21.12"
+    up-core-api: "1.6.0-alpha2"
+  test-requirements:
+    gtest: "1.14.0"
