@@ -28,6 +28,7 @@ jobs:
         run: |
           conan create --version 1.6.0-alpha2 up-core-api/release
           conan create --version 1.6.0-alpha3 up-core-api/release
+          conan create --version 1.6.0-alpha4 up-core-api/release
 
       - name: Build up-cpp conan package
         shell: bash

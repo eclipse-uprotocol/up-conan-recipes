@@ -10,4 +10,9 @@
     sha256: "ac51d1f5554dffa7b8eda28f075b5671a60a2656a5cef59e7843eddd6a44b9c6"
   requirements:
     protobuf: "3.21.12"
-
+1.6.0-alpha4:
+  sources:
+    url: "https://github.com/eclipse-uprotocol/up-spec/archive/refs/tags/v1.6.0-alpha.4.tar.gz"
+    sha256: "e889a797ae4b69ac7217810c5de170b8525a5ad7cec2c7466f00bda264c20ee1"
+  requirements:
+    protobuf: "3.21.12"
