@@ -36,9 +36,10 @@ class ZenohCppPackageConan(ConanFile):
 
     options = { }
     default_options = { }
-    settings = "build_type"
+    settings = "os", "compiler", "build_type", "arch"
 
     def layout(self):
+        self.cpp.package.includedirs = ["include"]
         cmake_layout(self)
 
     def requirements(self):
@@ -61,5 +62,3 @@ class ZenohCppPackageConan(ConanFile):
     def package_info(self):
         self.cpp_info.set_property("cmake_file_name", "zenohcpp")
         self.cpp_info.set_property("cmake_target_name", "zenohcpp::lib")
-
-        self.cpp_info.includedirs = ["include"]
