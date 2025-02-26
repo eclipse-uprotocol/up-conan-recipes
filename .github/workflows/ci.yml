@@ -16,18 +16,26 @@ jobs:
       - name: Install Conan
         id: conan
         uses: turtlebrowser/get-conan@main
-
-      - name: Create default Conan profile
-        run: conan profile detect
+        with:
+          version: 2.3.2 
 
       - name: Fetch conan recipes
         uses: actions/checkout@v4
+      
+      - name: Install conan CI profile
+        shell: bash
+        run: |
+          conan profile detect
+          cp .github/workflows/ci_conan_profile "$(conan profile path default)"
+          conan profile show
 
       - name: Build up-core-api conan package
         shell: bash
         run: |
           conan create --version 1.6.0-alpha2 up-core-api/release
           conan create --version 1.6.0-alpha3 up-core-api/release
+          conan create --version 1.6.0-alpha4 up-core-api/release
+        
 
       - name: Build up-cpp conan package
         shell: bash
@@ -77,11 +85,15 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
 
-      - name: Create default Conan profile
-        run: conan profile detect
-
       - name: Fetch conan recipes
         uses: actions/checkout@v4
+
+      - name: Install conan CI profile
+        shell: bash
+        run: |
+          conan profile detect
+          cp .github/workflows/ci_conan_profile "$(conan profile path default)"
+          conan profile show
 
       - name: Build up-core-api conan package
         shell: bash
