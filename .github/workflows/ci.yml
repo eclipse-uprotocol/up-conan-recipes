@@ -17,11 +17,11 @@ jobs:
         id: conan
         uses: turtlebrowser/get-conan@main
         with:
-          version: 2.3.2 
+          version: 2.3.2
 
       - name: Fetch conan recipes
         uses: actions/checkout@v4
-      
+
       - name: Install conan CI profile
         shell: bash
         run: |
@@ -35,7 +35,6 @@ jobs:
           conan create --version 1.6.0-alpha2 up-core-api/release
           conan create --version 1.6.0-alpha3 up-core-api/release
           conan create --version 1.6.0-alpha4 up-core-api/release
-        
 
       - name: Build up-cpp conan package
         shell: bash
@@ -109,11 +108,13 @@ jobs:
         shell: bash
         run: |
           conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
+          conan create --version 1.2.1 zenohc-tmp/prebuilt
 
       - name: Build zenohcpp conan package
         shell: bash
         run: |
           conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
+          conan create --version 1.2.1 zenohcpp-tmp/from-source
 
       - name: Build up-transport-zenoh-cpp conan package
         shell: bash

@@ -54,7 +54,10 @@ class ZenohCPackageConan(ConanFile):
         ]
 
     def layout(self):
-        pass
+        self.cpp.package.libs = ["zenohc"]
+        self.cpp.package.libdirs = ["lib"]
+        self.cpp.package.includedirs = ["include"]
+
 
     def configure(self):
         self.settings.rm_safe("compiler.cppstd")
@@ -81,14 +84,15 @@ class ZenohCPackageConan(ConanFile):
 
     def package(self):
         copy(self, "LICENSE", self.build_folder, os.path.join(self.package_folder, "licenses"))
-        copy(self, "*.so", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
-        copy(self, "*.a", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
+        # HACK adapt if versions are added or deprecated
+        if (self.version.startswith('0.') or self.version.startswith('1.0')):
+            copy(self, "*.so", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
+            copy(self, "*.a", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
+        else:
+            copy(self, "*.so", os.path.join(self.build_folder), self.package_folder)
+            copy(self, "*.a", os.path.join(self.build_folder), self.package_folder)
         copy(self, "*", os.path.join(self.build_folder, "include"), os.path.join(self.package_folder, "include"))
 
     def package_info(self):
         self.cpp_info.set_property("cmake_file_name", "zenohc")
         self.cpp_info.set_property("cmake_target_name", "zenohc::lib")
-
-        self.cpp_info.libs = ["zenohc"]
-        self.cpp_info.libdirs = ["lib"]
-        self.cpp_info.includedirs = ["include"]
