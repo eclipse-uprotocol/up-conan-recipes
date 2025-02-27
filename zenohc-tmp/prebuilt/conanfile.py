@@ -89,7 +89,7 @@ class ZenohCPackageConan(ConanFile):
             copy(self, "*.so", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
             copy(self, "*.a", os.path.join(self.build_folder), os.path.join(self.package_folder, "lib"))
         else:
-            copy(self, "*.so", os.path.join(self.build_folder),self.package_folder)
+            copy(self, "*.so", os.path.join(self.build_folder), self.package_folder)
             copy(self, "*.a", os.path.join(self.build_folder), self.package_folder)
         copy(self, "*", os.path.join(self.build_folder, "include"), os.path.join(self.package_folder, "include"))
 
