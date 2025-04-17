@@ -61,3 +61,26 @@ cd tools/ubuntu-24.04-docker/
 
 # Build packages here
 ```
+
+## Building protobuf for QNX
+
+Source QNX sdp
+
+```shell
+# source qnxsdp-env.sh
+source ~/qnx710/qnxsdp-env.sh
+```
+
+With Conan 2 QNX 7.1
+
+aarch64le:
+
+```shell
+conan create -pr:h=tools/profiles/nto-7.1-aarch64-le protobuf-qnx
+```
+
+x86_64:
+
+```shell
+conan create -pr:h=tools/profiles/nto-7.1-x86_64 protobuf-qnx
+```
