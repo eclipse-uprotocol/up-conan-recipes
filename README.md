@@ -61,3 +61,52 @@ cd tools/ubuntu-24.04-docker/
 
 # Build packages here
 ```
+
+## Building protobuf for QNX
+
+Source QNX sdp
+
+```shell
+# source qnxsdp-env.sh
+source ~/qnx710/qnxsdp-env.sh
+```
+
+With Conan 2 QNX 7.1
+
+aarch64le:
+
+```shell
+conan create -pr:h=tools/profiles/nto-7.1-aarch64-le protobuf
+```
+
+x86_64:
+
+```shell
+conan create -pr:h=tools/profiles/nto-7.1-x86_64 protobuf
+```
+
+## Building up-core-api for QNX
+
+Build local protobuf for linux. It is needed for generation of local sources
+
+```shell
+conan create --build=missing protobuf
+```
+
+Build protobuf for QNX host.
+
+```shell
+# source qnxsdp-env.sh
+source ~/qnx710/qnxsdp-env.sh
+conan create -pr:h=tools/profiles/nto-7.1-aarch64-le  protobuf
+```
+
+Build up-core-api for QNX
+
+```shell
+# source qnxsdp-env.sh
+source ~/qnx710/qnxsdp-env.sh
+conan create -pr:h=tools/profiles/nto-7.1-aarch64-le --version 1.6.0-alpha2 up-core-api/developer
+```
+
+**IMPORTANT** Existed QNX port supports also release build and nto-7.1-x86_64 profile
