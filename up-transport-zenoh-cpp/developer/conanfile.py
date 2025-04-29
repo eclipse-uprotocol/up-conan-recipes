@@ -28,7 +28,7 @@ class upZenohTransportRecipe(ConanFile):
             "fork": "eclipse-uprotocol/up-transport-zenoh-cpp",
             "commitish": "main"}
 
-    requires = "zenohcpp/[~1.0, include_prerelease]", "up-core-api/[~1.6, include_prerelease]", "up-cpp/[^1.0, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]"
+    requires = "zenohcpp/[~1.2.1]", "up-core-api/[~1.6, include_prerelease]", "up-cpp/[^1.0, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]"
     test_requires = "gtest/[~1.14]"
 
     def init(self):
