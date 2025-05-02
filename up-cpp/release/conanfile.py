@@ -38,8 +38,6 @@ class upCoreApiRecipe(ConanFile):
         if "test-requirements" in version_data:
             for requirement, version in version_data["test-requirements"].items():
                 self.test_requires(f"{requirement}/{version}")
-        
-                
 
     def source(self):
         get(self, **self.conan_data[self.version]["sources"], strip_root=True)
@@ -55,16 +53,29 @@ class upCoreApiRecipe(ConanFile):
         deps = CMakeDeps(self)
         deps.generate()
         tc = CMakeToolchain(self)
+        # Unfixed warnings by default are treated as an error
+        tc.cache_variables["CMAKE_CXX_FLAGS_INIT"] = "-Wno-error=unused-but-set-variable -Wno-error=pedantic -Wno-error=conversion"
+        if self.settings.os == "Neutrino":
+            tc.cache_variables["CMAKE_SYSTEM_NAME"] = "QNX"
+            tc.cache_variables["CMAKE_CXX_COMPILER"] = "q++"
+            # Trick to suppress compiler option '-pthread' which is not acceptable by qcc
+            #tc.cache_variables["CMAKE_HAVE_LIBC_PTHREAD"] = "True"
+            if   self.settings.arch == "armv8": #aarch64le
+                tc.cache_variables["CMAKE_SYSTEM_PROCESSOR"] = "aarch64le"
+                tc.cache_variables["CMAKE_CXX_COMPILER_TARGET"] = "gcc_ntoaarch64le"
+            elif self.settings.arch == "x86_64": #x86_64
+                tc.cache_variables["CMAKE_SYSTEM_PROCESSOR"] = "x86_64"
+                tc.cache_variables["CMAKE_CXX_COMPILER_TARGET"] = "gcc_ntox86_64"
         tc.generate()
 
     def build(self):
         cmake = CMake(self)
         cmake.configure()
-        cmake.build()
+        cmake.build(cli_args=["--verbose"])
 
     def package(self):
         cmake = CMake(self)
-        cmake.install()
+        cmake.install(cli_args=["--verbose"])
 
     def package_info(self):
         self.cpp_info.libs = ["up-cpp"]
