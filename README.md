@@ -62,51 +62,41 @@ cd tools/ubuntu-24.04-docker/
 # Build packages here
 ```
 
-## Building protobuf for QNX
+## Building Release Packages for QNX (cross-compile)
 
-Source QNX sdp
+**NOTE**: QNX cross-compilation are only supported from a Linux(x86_64) build machine.
+          For QNX, we have to explicitly build all dependencies
 
-```shell
-# source qnxsdp-env.sh
-source ~/qnx710/qnxsdp-env.sh
-```
+Pre-requisite:
 
-With Conan 2 QNX 7.1
-
-aarch64le:
+* Install QNX license and SDP installation (~/.qnx and ~/qnx800 by default)
+  - https://www.qnx.com/products/everywhere/ (**Non-Commercial Use**)
 
 ```shell
-conan create -pr:h=tools/profiles/nto-7.1-aarch64-le protobuf
+# source QNX SDP
+source <QNX_SDP>/qnxsdp-env.sh
+
+# build protobuf for Linux build machine
+conan create --version=3.21.12 --build=missing protobuf
+
+# IMPORTANT
+# update conan settings for QNX8.0 support
+conan config install tools/qnx-8.0-extension/settings_user.yml
+
+# build protobuf for QNX host
+#
+# <profile-name> could be one of: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+#
+conan create -pr:h=tools/profiles/<profile-name> --version=3.21.12 protobuf
+
+# build up-core-api
+conan create -pr:h=tools/profiles/<profile-name> --version 1.6.0-alpha2 up-core-api/release/
+
+# build all dependencies for up-cpp
+conan create -pr:h=tools/profiles/<profile-name> --version=10.2.1 fmt/all
+conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 spdlog/all
+conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 gtest
+
+# build up-cpp
+conan create -pr:h=tools/profiles/<profile-name> --version 1.0.1-qnx up-cpp/release
 ```
-
-x86_64:
-
-```shell
-conan create -pr:h=tools/profiles/nto-7.1-x86_64 protobuf
-```
-
-## Building up-core-api for QNX
-
-Build local protobuf for linux. It is needed for generation of local sources
-
-```shell
-conan create --build=missing protobuf
-```
-
-Build protobuf for QNX host.
-
-```shell
-# source qnxsdp-env.sh
-source ~/qnx710/qnxsdp-env.sh
-conan create -pr:h=tools/profiles/nto-7.1-aarch64-le  protobuf
-```
-
-Build up-core-api for QNX
-
-```shell
-# source qnxsdp-env.sh
-source ~/qnx710/qnxsdp-env.sh
-conan create -pr:h=tools/profiles/nto-7.1-aarch64-le --version 1.6.0-alpha2 up-core-api/developer
-```
-
-**IMPORTANT** Existed QNX port supports also release build and nto-7.1-x86_64 profile
