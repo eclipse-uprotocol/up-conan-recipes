@@ -60,7 +60,7 @@ class upCoreApiRecipe(ConanFile):
             tc.cache_variables["CMAKE_CXX_COMPILER"] = "q++"
             # Trick to suppress compiler option '-pthread' which is not acceptable by qcc
             #tc.cache_variables["CMAKE_HAVE_LIBC_PTHREAD"] = "True"
-            if   self.settings.arch == "armv8": #aarch64le
+            if self.settings.arch == "armv8": #aarch64le
                 tc.cache_variables["CMAKE_SYSTEM_PROCESSOR"] = "aarch64le"
                 tc.cache_variables["CMAKE_CXX_COMPILER_TARGET"] = "gcc_ntoaarch64le"
             elif self.settings.arch == "x86_64": #x86_64
