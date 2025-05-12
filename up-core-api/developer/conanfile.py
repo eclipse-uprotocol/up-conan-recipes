@@ -67,7 +67,7 @@ class upCoreApiRecipe(ConanFile):
             tc.cache_variables["CMAKE_C_COMPILER"] = "qcc"
             tc.cache_variables["CMAKE_CXX_COMPILER"] = "q++"
             tc.cache_variables["CMAKE_CXX_STANDARD"] = 14
-            if   self.settings.arch == "armv8": #aarch64le
+            if self.settings.arch == "armv8": #aarch64le
                 tc.cache_variables["CMAKE_SYSTEM_PROCESSOR"] = "aarch64le"
                 tc.cache_variables["CMAKE_CXX_COMPILER_TARGET"] = "gcc_ntoaarch64le"
                 tc.cache_variables["CMAKE_C_COMPILER_TARGET"] = "gcc_ntoaarch64le"
