@@ -34,6 +34,7 @@ class upCoreApiRecipe(ConanFile):
 
     def build_requirements(self):
         self.tool_requires("protobuf/3.21.12")
+        self.tool_requires("cmake/[>=3.23]")
 
     def init(self):
         self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-spec")
