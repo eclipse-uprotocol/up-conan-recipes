@@ -61,3 +61,42 @@ cd tools/ubuntu-24.04-docker/
 
 # Build packages here
 ```
+
+## Building Release Packages for QNX (cross-compile)
+
+**NOTE**: QNX cross-compilation are only supported from a Linux(x86_64) build machine.
+          For QNX, we have to explicitly build all dependencies
+
+Pre-requisite:
+
+* Install QNX license and SDP installation (~/.qnx and ~/qnx800 by default)
+  - https://www.qnx.com/products/everywhere/ (**Non-Commercial Use**)
+
+```shell
+# source QNX SDP
+source <QNX_SDP>/qnxsdp-env.sh
+
+# build protobuf for Linux build machine
+conan create --version=3.21.12 --build=missing protobuf
+
+# IMPORTANT
+# update conan settings for QNX8.0 support
+conan config install tools/qnx-8.0-extension/settings_user.yml
+
+# build protobuf for QNX host
+#
+# <profile-name> could be one of: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+#
+conan create -pr:h=tools/profiles/<profile-name> --version=3.21.12 protobuf
+
+# build up-core-api
+conan create -pr:h=tools/profiles/<profile-name> --version 1.6.0-alpha2 up-core-api/release/
+
+# build all dependencies for up-cpp
+conan create -pr:h=tools/profiles/<profile-name> --version=10.2.1 fmt/all
+conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 spdlog/all
+conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 gtest
+
+# build up-cpp
+conan create -pr:h=tools/profiles/<profile-name> --version 1.0.1-qnx up-cpp/release
+```

@@ -7,7 +7,7 @@
     up-core-api: "1.6.0-alpha2"
     spdlog: "1.13.0"
   test-requirements:
-    gtest: "1.14.0"
+    gtest: "1.13.0"
 
 1.0.0:
   sources:
@@ -17,7 +17,7 @@
     protobuf: "3.21.12"
     up-core-api: "1.6.0-alpha2"
   test-requirements:
-    gtest: "1.14.0"
+    gtest: "1.13.0"
 
 1.0.1-rc1:
   sources:
@@ -27,7 +27,7 @@
     protobuf: "3.21.12"
     up-core-api: "1.6.0-alpha2"
   test-requirements:
-    gtest: "1.14.0"
+    gtest: "1.13.0"
 
 1.0.1:
   sources:
@@ -37,4 +37,14 @@
     protobuf: "3.21.12"
     up-core-api: "1.6.0-alpha2"
   test-requirements:
-    gtest: "1.14.0"
+    gtest: "1.13.0"
+
+1.0.1-qnx:
+  sources:
+    url: "https://github.com/qnx-ports/up-cpp/archive/426ffbb982f152a4c41dcd071e25d80e9f3fbb68.tar.gz"
+    sha256: "acd8d51d132f3cb058e84377ca3593a750fdef62f017f95162d6d18ec1479e6c"
+  requirements:
+    protobuf: "3.21.12"
+    up-core-api: "1.6.0-alpha2"
+  test-requirements:
+    gtest: "1.13.0"
