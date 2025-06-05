@@ -21,3 +21,9 @@ os=Neutrino
 #7.1 --> QNX7.1
 #8.0 --> QNX8.0 - IMPORTANT: support for Canon2 in progress!
 os.version=8.0
+
+[buildenv]
+CC=qcc -Vgcc_ntox86_64
+CXX=q++ -Vgcc_ntox86_64
+CFLAGS=-D_XOPEN_SOURCE=700 -D_QNX_SOURCE
+CXXFLAGS=-D_XOPEN_SOURCE=700 -D_QNX_SOURCE

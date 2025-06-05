@@ -6,7 +6,6 @@
     protobuf: "3.21.12"
   build_requirements:
     protobuf: "3.21.12"
-    cmake: "[>=3.22]"
 1.6.0-alpha3:
   sources:
     url: "https://github.com/eclipse-uprotocol/up-spec/archive/refs/tags/v1.6.0-alpha.3.tar.gz"
@@ -15,7 +14,6 @@
     protobuf: "3.21.12"
   build_requirements:
     protobuf: "3.21.12"
-    cmake: "[>=3.22]"
 1.6.0-alpha4:
   sources:
     url: "https://github.com/eclipse-uprotocol/up-spec/archive/refs/tags/v1.6.0-alpha.4.tar.gz"
@@ -24,4 +22,3 @@
     protobuf: "3.21.12"
   build_requirements:
     protobuf: "3.21.12"
-    cmake: "[>=3.22]"

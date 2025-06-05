@@ -76,27 +76,38 @@ Pre-requisite:
 # source QNX SDP
 source <QNX_SDP>/qnxsdp-env.sh
 
-# build protobuf for Linux build machine
+# build protobuf for Linux
 conan create --version=3.21.12 --build=missing protobuf
 
 # IMPORTANT
 # update conan settings for QNX8.0 support
 conan config install tools/qnx-8.0-extension/settings_user.yml
 
-# build protobuf for QNX host
+# build protobuf for QNX
 #
 # <profile-name> could be one of: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+# <version-number>: 3.15.0, 3.21.12, 5.27.2
 #
-conan create -pr:h=tools/profiles/<profile-name> --version=3.21.12 protobuf
+conan create -pr:h=tools/profiles/<profile-name> --version=3.21.12 --build=missing protobuf
 
-# build up-core-api
-conan create -pr:h=tools/profiles/<profile-name> --version 1.6.0-alpha2 up-core-api/release/
+# build up-core-api for QNX
+#
+# <profile-name>: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+# <version-number>: 1.6.0-alpha2, 1.6.0-alpha3, 1.6.0-alpha4
+#
+conan create -pr:h=tools/profiles/<profile-name> --version=1.6.0-alpha2 up-core-api/release/
 
-# build all dependencies for up-cpp
-conan create -pr:h=tools/profiles/<profile-name> --version=10.2.1 fmt/all
-conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 spdlog/all
-conan create -pr:h=tools/profiles/<profile-name> --version=1.13.0 gtest
+# build gtest for QNX
+#
+# <profile-name>: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+# <version-number>: 1.10.0, 1.13.0, 1.14.0
+#
+conan create -pr:h=tools/profiles/<profile-name> --version=1.14.0 gtest
 
-# build up-cpp
-conan create -pr:h=tools/profiles/<profile-name> --version 1.0.1-qnx up-cpp/release
+# build up-cpp for QNX
+#
+# <profile-name>: nto-7.1-aarch64-le, nto-7.1-x86_64, nto-8.0-aarch64-le, nto-8.0-x86_64
+# <version-number>: 1.0.0-rc0, 1.0.0, 1.0.1-rc1, 1.0.1
+#
+conan create -pr:h=tools/profiles/<profile-name> --version=1.0.1 --build=missing up-cpp/release
 ```
