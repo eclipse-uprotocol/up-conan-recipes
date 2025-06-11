@@ -29,7 +29,11 @@ class upCoreApiRecipe(ConanFile):
             "fork": "eclipse-uprotocol/up-spec",
             "commitish": "main"}
 
-    requires = "protobuf/[~3.21]"
+    def requirements(self):
+        self.requires("protobuf/3.21.12")
+
+    def build_requirements(self):
+        self.tool_requires("protobuf/3.21.12")
 
     def init(self):
         self.fork = self.options.get_safe("fork", "eclipse-uprotocol/up-spec")

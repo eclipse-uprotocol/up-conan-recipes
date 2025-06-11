@@ -38,3 +38,33 @@
     up-core-api: "1.6.0-alpha2"
   test-requirements:
     gtest: "1.14.0"
+
+patches:
+  1.0.0-rc0:
+    - patch_file: "patches/up-cpp-1.0.0-rc0.patch"
+      patch_description: "removed -lpthread for QNX, fix wrong tests names"
+      patch_type: "conan"
+    - patch_file: "patches/up-cpp_capacity_fix.patch"
+      patch_description: "fix test CallbackTest.ReturnValuesAreMoved"
+      patch_type: "bugfix"
+  1.0.0:
+    - patch_file: "patches/up-cpp-1.0.0.patch"
+      patch_description: "removed -lpthread for QNX, fix wrong tests names"
+      patch_type: "conan"
+    - patch_file: "patches/up-cpp_capacity_fix.patch"
+      patch_description: "fix test CallbackTest.ReturnValuesAreMoved"
+      patch_type: "bugfix"
+  1.0.1-rc1:
+    - patch_file: "patches/up-cpp-1.0.1-rc1.patch"
+      patch_description: "removed -lpthread for QNX, fix wrong tests names"
+      patch_type: "conan"
+    - patch_file: "patches/up-cpp_capacity_fix.patch"
+      patch_description: "fix test CallbackTest.ReturnValuesAreMoved"
+      patch_type: "bugfix"
+  1.0.1:
+    - patch_file: "patches/up-cpp-1.0.1.patch"
+      patch_description: "removed -lpthread for QNX"
+      patch_type: "conan"
+    - patch_file: "patches/up-cpp_capacity_fix.patch"
+      patch_description: "fix test CallbackTest.ReturnValuesAreMoved"
+      patch_type: "bugfix"

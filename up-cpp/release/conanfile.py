@@ -1,9 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
-from conan.tools.scm import Git
-from conan.tools.files import copy, get
-import os
-import yaml
+from conan.tools.files import apply_conandata_patches, export_conandata_patches, get
 
 class upCoreApiRecipe(ConanFile):
     name = "up-cpp"
@@ -38,11 +35,12 @@ class upCoreApiRecipe(ConanFile):
         if "test-requirements" in version_data:
             for requirement, version in version_data["test-requirements"].items():
                 self.test_requires(f"{requirement}/{version}")
-        
-                
 
     def source(self):
         get(self, **self.conan_data[self.version]["sources"], strip_root=True)
+
+    def export_sources(self):
+        export_conandata_patches(self)
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -55,9 +53,12 @@ class upCoreApiRecipe(ConanFile):
         deps = CMakeDeps(self)
         deps.generate()
         tc = CMakeToolchain(self)
+        # Unfixed warnings by default are treated as an error.
+        tc.cache_variables["CMAKE_CXX_FLAGS_INIT"] = "-Wno-error=unused-but-set-variable -Wno-error=pedantic -Wno-error=conversion"
         tc.generate()
 
     def build(self):
+        apply_conandata_patches(self)
         cmake = CMake(self)
         cmake.configure()
         cmake.build()

@@ -34,7 +34,15 @@ class upCoreApiRecipe(ConanFile):
                 self.requires(f"{requirement}/{version}")
         else:
             self.output.warning("No requirements specified in conandata.yml. Please check your configuration.")
-                
+
+    def build_requirements(self):
+        version_data = self.conan_data[self.version]
+        if "build_requirements" in version_data:
+            for requirement, version in version_data["build_requirements"].items():
+                self.tool_requires(f"{requirement}/{version}")
+        else:
+            self.output.warning("No build requirements specified in conandata.yml. Please check your configuration.")
+
 
     # We are providing our own cmake config since one is not included in the
     # spec repo.
