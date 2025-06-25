@@ -18,6 +18,7 @@ dpkg -i conan-2.3.0-amd64.deb
 
 echo
 echo "Configuring container user"
+userdel ubuntu
 groupadd -g $GROUP_ID -o user
 useradd --shell /bin/bash -u $USER_ID -g $GROUP_ID -o -c "" -m user
 
