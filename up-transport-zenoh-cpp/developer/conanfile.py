@@ -1,7 +1,6 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.scm import Git
-from conan.tools.files import copy
 
 
 class upZenohTransportRecipe(ConanFile):
@@ -28,7 +27,7 @@ class upZenohTransportRecipe(ConanFile):
             "fork": "eclipse-uprotocol/up-transport-zenoh-cpp",
             "commitish": "main"}
 
-    requires = "zenohcpp/[~1.2.1]", "up-core-api/[~1.6, include_prerelease]", "up-cpp/[^1.0, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]"
+    requires = "zenohcpp/[~1.5.0]", "up-core-api/[~1.6, include_prerelease]", "up-cpp/[^1.0, include_prerelease]", "spdlog/[~1.13]", "protobuf/[~3.21]"
     test_requires = "gtest/[~1.14]"
 
     def init(self):

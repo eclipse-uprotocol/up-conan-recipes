@@ -52,6 +52,8 @@ class upCoreApiRecipe(ConanFile):
         deps = CMakeDeps(self)
         deps.generate()
         tc = CMakeToolchain(self)
+        # Unfixed warnings by default are treated as an error.
+        tc.cache_variables["CMAKE_CXX_FLAGS_INIT"] = "-Wno-error=unused-but-set-variable -Wno-error=pedantic -Wno-error=conversion"
         tc.generate()
 
     def build(self):

@@ -12,9 +12,9 @@
 #   ZettaScale Zenoh Team, <zenoh@zettascale.tech>
 #
 from conan import ConanFile
-from conan.tools.files import copy, download, get
+from conan.tools.files import copy, get
 from conan.tools.cmake import cmake_layout
-from conan.tools.cmake import CMake, CMakeToolchain
+from conan.tools.cmake import CMake
 
 import platform
 import os

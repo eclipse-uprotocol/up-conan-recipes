@@ -1,4 +1,10 @@
 sources:
+  "1.5.0":
+    url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/1.5.0.tar.gz"
+    sha256: "aad21519b995a33a7e26db3234ae8d8af5ddd6a6fcd206a23c62cac179c419d8"
+  "1.4.0":
+    url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/1.4.0.tar.gz"
+    sha256: "45999825a39a8f98a9a7e29457fd80a6656ad2852350e849c073ea7bdf517304"
   "1.2.1":
     url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/1.2.1.tar.gz"
     sha256: "2ad821e1c69d60c082688af7f66e8ff2029d94988767fa7ce5b6c889b3eb545a"
@@ -18,6 +24,10 @@ sources:
     url: "https://github.com/eclipse-zenoh/zenoh-cpp/archive/refs/tags/0.11.0.3.tar.gz"
     sha256: "3c0a424809f464b9704480bca58c895a5438f4bb1586d4e3ff4838879c73b69d"
 build:
+  "1.5.0":
+    build_script_folder: "."
+  "1.4.0":
+    build_script_folder: "."
   "1.2.1":
     build_script_folder: "."
   "1.0.0-rc6":

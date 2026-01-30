@@ -32,9 +32,9 @@ jobs:
       - name: Build up-core-api conan package
         shell: bash
         run: |
-          conan create --version 1.6.0-alpha2 up-core-api/release
-          conan create --version 1.6.0-alpha3 up-core-api/release
-          conan create --version 1.6.0-alpha4 up-core-api/release
+          conan create --version 1.6.0-alpha2 up-core-api/release --build=missing
+          conan create --version 1.6.0-alpha3 up-core-api/release --build=missing
+          conan create --version 1.6.0-alpha4 up-core-api/release --build=missing
 
       - name: Build up-cpp conan package
         shell: bash
@@ -97,7 +97,7 @@ jobs:
       - name: Build up-core-api conan package
         shell: bash
         run: |
-          conan create --version 1.6.1-dev up-core-api/developer
+          conan create --version 1.6.1-dev up-core-api/developer --build=missing
 
       - name: Build up-cpp conan package
         shell: bash
@@ -109,12 +109,16 @@ jobs:
         run: |
           conan create --version 1.0.0-rc5 zenohc-tmp/prebuilt
           conan create --version 1.2.1 zenohc-tmp/prebuilt
+          conan create --version 1.4.0 zenohc-tmp/prebuilt
+          conan create --version 1.5.0 zenohc-tmp/prebuilt
 
       - name: Build zenohcpp conan package
         shell: bash
         run: |
           conan create --version 1.0.0-rc5 zenohcpp-tmp/from-source
           conan create --version 1.2.1 zenohcpp-tmp/from-source
+          conan create --version 1.4.0 zenohcpp-tmp/from-source
+          conan create --version 1.5.0 zenohcpp-tmp/from-source
 
       - name: Build up-transport-zenoh-cpp conan package
         shell: bash

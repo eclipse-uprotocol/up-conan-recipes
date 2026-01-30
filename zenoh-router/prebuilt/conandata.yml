@@ -1,0 +1,25 @@
+sources:
+  "1.5.0":
+    Linux:
+      x86_64:
+        url: "https://github.com/eclipse-zenoh/zenoh/releases/download/1.5.0/zenoh-1.5.0-x86_64-unknown-linux-gnu-standalone.zip"
+        sha256: "b37014c772f5c977650ca60d46b34ac20f0c9ea3f016160371511ffeee41595b"
+    license:
+      url: "https://github.com/eclipse-zenoh/zenoh/raw/1.5.0/LICENSE"
+      sha256: "01a44774f7b1a453595c7c6d7f7308284ba6a1059dc49e14dad6647e1d44a338"
+  "1.4.0":
+    Linux:
+      x86_64:
+        url: "https://github.com/eclipse-zenoh/zenoh/releases/download/1.4.0/zenoh-1.4.0-x86_64-unknown-linux-gnu-standalone.zip"
+        sha256: "eb81a3510379400703da6bb5cee69f2360efedbec1075225da2602698751e62a"
+    license:
+      url: "https://github.com/eclipse-zenoh/zenoh/raw/1.4.0/LICENSE"
+      sha256: "01a44774f7b1a453595c7c6d7f7308284ba6a1059dc49e14dad6647e1d44a338"
+  "1.2.1":
+    Linux:
+      x86_64:
+        url: "https://github.com/eclipse-zenoh/zenoh/releases/download/1.2.1/zenoh-1.2.1-x86_64-unknown-linux-gnu-standalone.zip"
+        sha256: "4a2c9e3003aa2140a17d11cb0b73390b02d8ab4c176fca808c79581a671d1565"
+    license:
+      url: "https://github.com/eclipse-zenoh/zenoh/raw/1.2.1/LICENSE"
+      sha256: "01a44774f7b1a453595c7c6d7f7308284ba6a1059dc49e14dad6647e1d44a338"

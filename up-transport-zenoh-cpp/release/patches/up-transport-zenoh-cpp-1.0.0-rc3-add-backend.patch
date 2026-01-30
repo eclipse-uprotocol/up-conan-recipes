@@ -1,0 +1,212 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 59eab5f..c89b1ea 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -16,12 +16,25 @@ find_package(protobuf REQUIRED)
+ find_package(spdlog REQUIRED)
+ find_package(up-core-api REQUIRED)
+ find_package(up-cpp REQUIRED)
++
++option(WITH_ZENOH_PICO "Build based on zenoh-pico backend" OFF)
++option(WITH_ZENOH_C "Build based on zenoh-c backend" OFF)
++
+ if(CMAKE_SYSTEM_NAME MATCHES "QNX")
+ 	# workaround since _Bool is not defined for C++ in qnx.
+ 	add_compile_definitions("_Bool=bool")
+ endif()
+-find_package(zenohpico REQUIRED)
+-find_package(zenohcxx REQUIRED)
++
++if(WITH_ZENOH_PICO)
++	find_package(zenohpico REQUIRED)
++	find_package(zenohcxx REQUIRED)
++elseif(WITH_ZENOH_C)
++	find_package(zenohc REQUIRED)
++	find_package(zenohcxx REQUIRED)
++else()
++	find_package(zenohcpp REQUIRED)
++	add_compile_definitions(ZENOHCXX_ZENOHC)
++endif()
+ 
+ # TODO NEEDED?
+ #add_definitions(-DSPDLOG_FMT_EXTERNAL)
+@@ -56,24 +69,53 @@ target_include_directories(${PROJECT_NAME}
+ 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+ 	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+ 	$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
+-	${zenohpico_INCLUDE_DIR}
+-	${zenohcxx_zenohpico_INCLUDE_DIR}
+ 	${up-cpp_INCLUDE_DIR}
+ 	${up-core-api_INCLUDE_DIR}
+ 	${protobuf_INCLUDE_DIR}
+ 	${spdlog_INCLUDE_DIR})
+ 
++if(WITH_ZENOH_PICO)
++	target_include_directories(${PROJECT_NAME}
++		PUBLIC
++		${zenohpico_INCLUDE_DIR}
++		${zenohcxx_zenohpico_INCLUDE_DIR})
++elseif(WITH_ZENOH_C)
++	target_include_directories(${PROJECT_NAME}
++		PUBLIC
++		${zenohc_INCLUDE_DIR}
++		${zenohcxx_zenohc_INCLUDE_DIR})
++else()
++	target_include_directories(${PROJECT_NAME}
++		PUBLIC
++		${zenohcpp_INCLUDE_DIR})
++endif()
++
++
+ set_property(TARGET ${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
+ 
+ target_link_libraries(${PROJECT_NAME}
+ 	PRIVATE
+-	zenohpico::lib
+-	zenohcxx::zenohpico
+ 	up-cpp::up-cpp
+ 	up-core-api::up-core-api
+ 	protobuf::libprotobuf
+ 	spdlog::spdlog)
+ 
++if(WITH_ZENOH_PICO)
++	target_link_libraries(${PROJECT_NAME}
++		PRIVATE
++		zenohpico::lib
++		zenohcxx::zenohpico)
++elseif(WITH_ZENOH_C)
++	target_link_libraries(${PROJECT_NAME}
++		PRIVATE
++		zenohc::lib
++		zenohcxx::zenohc)
++else()
++	target_link_libraries(${PROJECT_NAME}
++		PRIVATE
++		zenohcpp::lib)
++endif()
++
+ enable_testing()
+ add_subdirectory(test)
+ 
+diff --git a/conanfile.py b/conanfile.py
+new file mode 100644
+index 0000000..43b4fad
+--- /dev/null
++++ b/conanfile.py
+@@ -0,0 +1,55 @@
++from conan import ConanFile
++from conan.tools.cmake import CMakeToolchain, cmake_layout, CMakeDeps
++from conan.errors import ConanInvalidConfiguration
++
++class upZenohTransportRecipe(ConanFile):
++    name = "up-transport-zenoh-cpp"
++
++    # Optional metadata
++    license = "Apache-2.0"
++    author = "Contributors to the Eclipse Foundation <uprotocol-dev@eclipse.org>"
++    url = "https://github.com/eclipse-uprotocol/up-transport-zenoh-cpp"
++    description = "This library provides a Zenoh-based uProtocol transport for C++ uEntities"
++    topics = ("automotive", "iot", "uprotocol", "messaging")
++
++    # Binary configuration
++    settings = "os", "compiler", "build_type", "arch"
++    options = {
++        "backend": ["zenoh-pico", "zenoh-tmp"],
++    }
++
++    default_options = {
++        "backend": "zenoh-tmp",
++    }
++
++    def requirements(self):
++        if "zenoh-tmp" == self.options.backend:
++            self.requires("zenohcpp/1.0.0-rc5")
++            self.requires("zenohc/1.0.0-rc5")
++        elif "zenoh-pico" == self.options.backend:
++            self.requires("zenoh-cpp/1.0.0-rc5", options={"backend":"zenoh-pico"})
++            self.requires("zenoh-pico/1.0.0-rc5")
++        else:
++            raise ConanInvalidConfiguration(f"Zenoh backend: {self.options.backend} is not supported")
++        self.requires("up-core-api/[~1.6, include_prerelease]")
++        self.requires("up-cpp/[^1.0.1]")
++        self.requires("spdlog/[~1.13]")
++        self.requires("protobuf/[~3.21]")
++        self.test_requires("gtest/1.14.0")
++
++    def layout(self):
++        cmake_layout(self)
++
++    def generate(self):
++        deps = CMakeDeps(self)
++        deps.generate()
++        tc = CMakeToolchain(self)
++        if "zenoh-tmp" == self.options.backend:
++            tc.cache_variables["WITH_ZENOH_PICO"] = False
++            tc.cache_variables["WITH_ZENOH_C"] = False
++        elif "zenoh-pico" == self.options.backend:
++            tc.cache_variables["WITH_ZENOH_PICO"] = True
++            tc.cache_variables["WITH_ZENOH_C"] = False
++        else:
++            raise ConanInvalidConfiguration(f"Zenoh backend: {self.options.backend} is not supported")
++        tc.generate()
+diff --git a/conanfile.txt b/conanfile.txt
+deleted file mode 100644
+index 8b4affc..0000000
+--- a/conanfile.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-[requires]
+-up-cpp/[^1.0.1]
+-zenohcpp/1.0.0-rc5
+-zenohc/1.0.0-rc5
+-spdlog/[~1.13]
+-up-core-api/[~1.6, include_prerelease]
+-protobuf/[~3.21]
+-
+-[test_requires]
+-gtest/1.14.0
+-
+-[generators]
+-CMakeDeps
+-CMakeToolchain
+-
+-[layout]
+-cmake_layout
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 5b6c21d..baf8f47 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -26,14 +26,31 @@ function(add_coverage_test Name)
+         up-core-api::up-core-api
+         up-cpp::up-cpp
+         up-cpp::up-transport-zenoh-cpp
+-        zenohpico::lib
+-        zenohcxx::zenohpico
+         spdlog::spdlog
+         protobuf::protobuf
+         PRIVATE
+         GTest::gtest_main
+         GTest::gmock
+     )
++    if(WITH_ZENOH_PICO)
++        target_link_libraries(${Name}
++            PUBLIC
++            zenohpico::lib
++            zenohcxx::zenohpico
++        )
++    elseif(WITH_ZENOH_C)
++        target_link_libraries(${Name}
++            PUBLIC
++            zenohc::lib
++            zenohcxx::zenohc
++        )
++    else()
++        target_link_libraries(${Name}
++            PUBLIC
++            zenohcpp::lib
++        )
++    endif()
++
+     if(CMAKE_SYSTEM_NAME MATCHES "QNX")
+         target_link_libraries(${Name} PRIVATE socket)
+     else()
