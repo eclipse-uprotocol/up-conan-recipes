@@ -20,7 +20,7 @@ jobs:
           version: 2.3.2
 
       - name: Fetch conan recipes
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Install conan CI profile
         shell: bash
@@ -85,7 +85,7 @@ jobs:
         uses: turtlebrowser/get-conan@main
 
       - name: Fetch conan recipes
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Install conan CI profile
         shell: bash
